@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row">
+	<div class="col d-flex justify-content-center ">
+		<table style="height:500px;">
+			<tbody>
+				<tr>
+					<td class="align-middle">
+						<h2>Iniciar sesión</h2>
+						<div class="card bg-light mx-auto ">
+							<div class="card-body">
+								<form method="POST" action="{% url 'login' %}">
+									{% csrf_token %}
+									<table>
+										<tr>
+											<td class="pb-4"><b>Usuario:</b></td>
+											<td class="pb-4">{{ form.username }}</td>
+										</tr>
+										<tr>
+											<td class="pr-4 pb-4"><b>Contraseña:</b></td>
+											<td class="pb-4">{{ form.password }}</td>
+										</tr>
+									</table>
+									{% if form.errors %}
+									<li class="ml-4 mb-4">Los datos ingresados son incorrectos.</li>
+									{% endif %}
+									<center>
+										<input type="submit" value="Iniciar sesión" class="btn btn-success btn-lg px-4 mx-4">
+									</center>
+									<input type="hidden" name="next" value="{{ next }}">
+								</form>
+							</div>
+						</div>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+
+{% endblock %}

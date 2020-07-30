@@ -5,5 +5,4 @@ def custom_login(request):
     if request.user.is_authenticated:
         return render(request, 'registro/inicio.html')
     else:
-    	
         return render(request, 'registration/login.html')

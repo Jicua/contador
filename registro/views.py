@@ -84,16 +84,13 @@ def tipo_create_view(request):
 
 @login_required()
 def trabajo_create_view(request):
-	initial_data = {
-		'fecha_inicio': datetime.now().strftime("%d-%m-%Y"),
-	}
-	form = TrabajoForm(request.POST or None, initial_data)
-	form.initial['contador'] = request.user
+	form = TrabajoForm(request.POST or None)
 	if form.is_valid():
 		form.save()
 	context = {
 		'form': form,
 	}
 	print(form.errors)
+	print(request.POST)
 	return render(request, 'registro/trabajo/create.html', context)
 

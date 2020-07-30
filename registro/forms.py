@@ -29,10 +29,22 @@ class TrabajoForm(forms.ModelForm):
 			'descripcion',
 		]
 		widgets = {
-			'fecha_inicio': DateTimePicker(),
+			'fecha_inicio': DateTimePicker(
+					options={
+						'format': "DD/MM/YYYY H:mm",
+						'stepping': 5,
+					}
+				),
 			'duracion': TimePicker(
 					options={
-						'format': "LT"
+						'format': "H:mm",
+						'stepping': 5,
+					}
+				),
+			'descripcion': forms.Textarea(
+					attrs={
+					'rows': 3,
+					'cols': 21
 					}
 				),
 		}

@@ -1,53 +1,43 @@
 {% extends 'base.html' %}
 {% load widget_tweaks %}
 {% block content %}
-<div class="row">
-	<div class="col d-flex justify-content-left ">
-		<table style="height:200px;">
-			<tbody>
-				<tr>
-					<td class="align-middle">
-						<h2 class="mb-4">Ingresar nuevo trabajo</h2>
-						<form method="POST"> {% csrf_token %}
-							{{ form.media }}
-							<div class="form-group">
-								<input type="hidden" name="contador" value="{{ user.id }}" />
-								<div class="card bg-light mx-auto mb-4">
-									<div class="card-body">
-										<table>
-											<tr>
-												<td class="pb-4">Cliente:</td>
-												<td class="pb-4">{{ form.cliente|add_class:"form-control" }}</td>
-											</tr>
-											<tr>
-												<td class="pb-4">Tipo de trabajo:</td>
-												<td class="pb-4">{{ form.tipo|add_class:"form-control" }}</td>
-											</tr>
-											<tr>
-												<td class="pb-4">Fecha de inicio:</td>
-												<td class="pb-4">
-													<div class="input-group date" data-target-input="nearest">
 
-														{{ form.fecha_inicio }}
-
-													</div>
-												</td>
-											</tr>
-											<tr>
-												<td class="pb-4">Duración:</td>
-												<td class="pb-4">{{ form.duracion|add_class:"form-control"|default:"9" }}</td>
-											</tr>
-										</table>
-									</div>
-								</div>
-							</div>
-							<input type="submit" class="btn btn-lg btn-success mr-4" value="Crear nuevo trabajo" />
-							<button class="btn btn-lg btn-secondary">Cancelar</button>
-						</form>
-					</td>
-				</tr>
-			</tbody>
-		</table>
+<h2 class="mb-4">Ingresar nuevo trabajo</h2>
+<form method="POST"> {% csrf_token %}
+	{{ form.media }}
+	<div class="form-group">
+		<input type="hidden" name="contador" value="{{ user.id }}" />
+		<div class="card bg-light mx-auto mb-4">
+			<div class="card-body">
+				<table>
+					<tr>
+						<td class="pb-4"><b>Cliente:</b></td>
+						<td class="pb-4">{{ form.cliente|add_class:"form-control" }}</td>
+					</tr>
+					<tr>
+						<td class="pb-4"><b>Tipo de trabajo:</b></td>
+						<td class="pb-4">{{ form.tipo|add_class:"form-control" }}</td>
+					</tr>
+					<tr>
+						<td class="pb-4"><b>Fecha de inicio:</b></td>
+						<td class="pb-4">			
+								{{ form.fecha_inicio }}
+						</td>
+					</tr>
+					<tr>
+						<td class="pb-4"><b>Duración:</b></td>
+						<td class="pb-4">{{ form.duracion|add_class:"form-control" }}</td>
+					</tr>
+					<tr>
+						<td class="pb-4">Descripción:</td>
+						<td class="pb-4">{{ form.descripcion|add_class:"form-control" }}</td>
+					</tr>
+				</table>
+			</div>
+		</div>
 	</div>
-</div>
+	<input type="submit" class="btn btn-lg btn-success mr-4" value="Crear nuevo trabajo" />
+	<button class="btn btn-lg btn-secondary">Cancelar</button>
+</form>
+
 {% endblock %}

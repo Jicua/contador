@@ -1,6 +1,9 @@
 {% extends 'base.html' %}
 
 {% block content %}
+{% if user.is_authenticated %}
+    <meta http-equiv="REFRESH" content="0;url=/registro/">
+{% endif %}
 <div class="row">
 	<div class="col d-flex justify-content-center ">
 		<table style="height:500px;">

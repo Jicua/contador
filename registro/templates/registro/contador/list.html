@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% if contadores %}
+<h1 class="mb-4">Lista de contadores</h1>
+<table class="table table-striped table-hover table-bordered">
+	<thead class="thead">
+		<tr>
+			<th>Nombre</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for contador in contadores %}
+		<tr>
+			<td><a href="{{ contador.id }}">{{ contador.first_name}}</a></td>
+		</tr>
+		{% endfor %}
+	</tbody>
+</table>
+{% else %}
+<p>No existen contadores.</p>
+{% endif %}
+<a href="{% url 'contador-crear' %}"><button class="btn btn-success btn-lg">Crear nuevo contador</button></a>
+{% endblock %}

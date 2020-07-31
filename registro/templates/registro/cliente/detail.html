@@ -1,14 +1,20 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<table>
-	<tr>
-		<td><b>Rut:</b></td>
-		<td>{{ cliente.rut }}</td>
-	</tr>
-	<tr>
-		<td><b>Nombre:</b></td>
-		<td>{{ cliente.nombre }}</td>
-	</tr>
-</table>
+<h1 class="mb-4">Detalle de cliente</h1>
+<div class="card bg-light mx-auto my-4">
+	<div class="card-body">
+		<table>
+			<tr>
+				<td class="pb-4 pr-2"><b>Rut:</b></td>
+				<td class="pb-4 pr-2">{{ cliente.rut }}</td>
+			</tr>
+			<tr>
+				<td class="pr-2"><b>Nombre:</b></td>
+				<td class="pr-2">{{ cliente.nombre }}</td>
+			</tr>
+		</table>
+	</div>
+</div>
+<button class="btn btn-lg btn-secondary" onclick="window.location.href='/registro/clientes/'">Volver</button>
 {% endblock %}

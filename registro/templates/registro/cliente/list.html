@@ -2,8 +2,8 @@
 
 {% block content %}
 {% if clientes %}
-<h1>Lista de clientes</h1>
-<table class="table table-striped table-hover">
+<h1 class="mb-4">Lista de clientes</h1>
+<table class="table table-striped table-hover table-bordered">
 	<thead class="thead">
 		<tr>
 			<th>Rut</th>
@@ -16,7 +16,7 @@
 		<tr>
 			<td>{{ cliente.rut }}</td>
 			<td>{{ cliente.nombre}}</td>
-			<td><a href="{{ cliente.get_absolute_url }}">Editar</a></td>
+			<td><a href="{{ cliente.get_absolute_url }}">Detalles</a></td>
 		</tr>
 		{% endfor %}
 	</tbody>

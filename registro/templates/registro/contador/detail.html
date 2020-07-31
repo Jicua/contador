@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1 class="mb-4">Detalle de contador</h1>
+<div class="card bg-light mx-auto my-4">
+	<div class="card-body">
+		<table>
+			<tr>
+				<td class="pb-4 pr-2"><b>Nombre de usuario:</b></td>
+				<td class="pb-4 pr-2">{{ contador.username }}</td>
+				</td>
+			</tr>
+			<tr>
+				<td class="pb-4 pr-2"><b>Nombre:</b></td>
+				<td class="pb-4 pr-2">{{ contador.first_name }}</td>
+			</tr>
+			<tr>
+				<td class="pr-2"><b>Horas trabajadas:</b></td>
+				<td class="pr-2">{{ horas }} horas {{ minutos }} minutos</td>
+			</tr>
+		</table>
+	</div>
+</div>
+<button class="btn btn-lg btn-secondary" onclick="window.location.href='/registro/contadores/'">Volver</button>
+{% endblock %}

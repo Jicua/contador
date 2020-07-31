@@ -28,7 +28,7 @@ class Trabajo(models.Model):
 	cliente			= models.ForeignKey(Cliente, blank=False, null=True, on_delete=models.SET_NULL)
 	tipo			= models.ForeignKey(Tipo, blank=False, null=True, on_delete=models.SET_NULL)
 	fecha_inicio	= models.DateTimeField(blank=False, null=False)
-	duracion		= models.TimeField(null=True)
+	duracion		= models.TimeField(blank=True, null=True)
 	descripcion		= models.TextField(blank=True, null=True)
 
 	def get_absolute_url(self):

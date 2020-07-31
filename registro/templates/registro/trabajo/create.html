@@ -2,7 +2,7 @@
 {% load widget_tweaks %}
 {% block content %}
 
-<h2 class="mb-4">Ingresar nuevo trabajo</h2>
+<h1 class="mb-4">Ingresar nuevo trabajo</h1>
 <form method="POST"> {% csrf_token %}
 	{{ form.media }}
 	<div class="form-group">
@@ -15,14 +15,12 @@
 						<td class="pb-4">{{ form.cliente|add_class:"form-control" }}</td>
 					</tr>
 					<tr>
-						<td class="pb-4"><b>Tipo de trabajo:</b></td>
+						<td class="pb-4 pr-2"><b>Tipo de trabajo:</b></td>
 						<td class="pb-4">{{ form.tipo|add_class:"form-control" }}</td>
 					</tr>
 					<tr>
 						<td class="pb-4"><b>Fecha de inicio:</b></td>
-						<td class="pb-4">			
-								{{ form.fecha_inicio }}
-						</td>
+						<td class="pb-4">{{ form.fecha_inicio }}</td>
 					</tr>
 					<tr>
 						<td class="pb-4"><b>Duración:</b></td>
@@ -36,8 +34,9 @@
 			</div>
 		</div>
 	</div>
-	<input type="submit" class="btn btn-lg btn-success mr-4" value="Crear nuevo trabajo" />
-	<button class="btn btn-lg btn-secondary">Cancelar</button>
+	<input type="submit" class="btn btn-lg btn-success mr-4" value="Crear nuevo trabajo" /> <button class="btn btn-lg btn-secondary" onclick="window.location.href='/registro/'">Cancelar</button>
 </form>
+
+
 
 {% endblock %}

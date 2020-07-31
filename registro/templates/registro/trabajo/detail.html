@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1 class="mb-4">Detalle de trabajo</h1>
+<div class="card bg-light mx-auto my-4">
+	<div class="card-body">
+		<table>
+			<tr>
+				<td class="pb-4 pr-2"><b>Fecha de inicio:</b></td>
+				<td class="pb-4 pr-2">{{ trabajo.fecha_inicio|date:"d \d\e F \d\e Y" }}</td>
+			</tr>
+			<tr>
+				<td class="pb-4 pr-2"><b>Hora de inicio:</b></td>
+				<td class="pb-4 pr-2">{{ trabajo.fecha_inicio|date:"H:i" }}</td>
+
+			</tr>
+			<tr>
+				<td class="pb-4 pr-2"><b>Duración:</b></td>
+				<td class="pb-4 pr-2">{{ trabajo.duracion }}</td>
+			</tr>
+			<tr>
+				<td class="pr-2"><b>Descripción:</b></td>
+				<td class="pr-2">{% if trabajo.descripcion %}{{ trabajo.descripcion }}{% else %}<i>No disponible</i>{% endif %}</td>
+			</tr>
+		</table>
+	</div>
+</div>
+<button class="btn btn-lg btn-secondary" onclick="window.location.href='/registro/trabajos/'">Volver</button>
+{% endblock %}

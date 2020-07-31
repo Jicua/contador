@@ -2,8 +2,8 @@
 
 {% block content %}
 {% if tipos %}
-<h1>Lista de tipos de trabajo</h1>
-<table class="table table-striped table-hover">
+<h1 class="mb-4">Lista de tipos de trabajo</h1>
+<table class="table table-striped table-hover table-bordered">
 	<thead class="thead">
 		<tr>
 			<th>Tipo</th>
@@ -14,7 +14,7 @@
 		{% for tipo in tipos %}
 		<tr>
 			<td>{{ tipo.nombre}}</td>
-			<td><a href="{{ tipos.get_absolute_url }}">Editar</a></td>
+			<td><a href="{{ tipo.get_absolute_url }}">Detalles</a></td>
 		</tr>
 		{% endfor %}
 	</tbody>

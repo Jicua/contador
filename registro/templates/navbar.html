@@ -9,10 +9,16 @@
         <a class="nav-link" href="/registro/">Inicio<span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item active ml-2">
+        <a class="nav-link" href="{% url 'contador-lista' %}">Contadores</a>
+      </li>
+      <li class="nav-item active ml-2">
         <a class="nav-link" href="{% url 'cliente-lista' %}">Clientes</a>
       </li>
       <li class="nav-item active ml-2">
         <a class="nav-link" href="{% url 'tipo-lista' %}">Tipos de trabajo</a>
+      </li>
+      <li class="nav-item active ml-2">
+        <a class="nav-link" href="{% url 'trabajo-lista' %}">Trabajos</a>
       </li>
     </ul>
     {% if user.is_authenticated %}

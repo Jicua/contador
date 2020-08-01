@@ -6,6 +6,18 @@
 	<div class="card-body">
 		<table>
 			<tr>
+				<td class="pb-4 pr-2"><b>Contador:</b></td>
+				<td class="pb-4 pr-2">{{ trabajo.contador.first_name }}</td>
+			</tr>
+			<tr>
+				<td class="pb-4 pr-2"><b>Cliente:</b></td>
+				<td class="pb-4 pr-2">{{ trabajo.cliente }}</td>
+			</tr>
+			<tr>
+				<td class="pb-4 pr-2"><b>Tipo de trabajo:</b></td>
+				<td class="pb-4 pr-2">{{ trabajo.tipo }}</td>
+			</tr>
+			<tr>
 				<td class="pb-4 pr-2"><b>Fecha de inicio:</b></td>
 				<td class="pb-4 pr-2">{{ trabajo.fecha_inicio|date:"d \d\e F \d\e Y" }}</td>
 			</tr>

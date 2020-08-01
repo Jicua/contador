@@ -1,42 +1,55 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-{% if user.is_staff %}
 <style>
 	.btn-sq-lg {
- 		width: 150px !important;
-  		height: 150px !important;
+ 		width: 200px !important;
+  		height: 200px !important;
 }
 </style>
+{% if user.is_staff %}
 <h1>Página de inicio Administrador</h1>
 {% else %}
 <h1>Página de inicio Contador</h1>
 {% endif %}
-<center><a href="{% url 'trabajo-crear' %}"><button class="btn btn-success btn-sq-lg my-5"><i class="fa fa-clock-o fa-5x"></i><br/><b>Ingresar nuevo trabajo</b></button></a></center>
-<h2>Mis trabajos en las últimas 48 horas</h2>
-<a href="trabajos/">Ver todos mis trabajos</a>
-{% if trabajos %}
-<table class="table table-striped table-hover table-bordered mt-4">
-<thead class="thead">
-		<tr>
-			<th>Fecha de inicio</th>
-			<th>Duración</th>	
-			<th>Cliente</th>
-			<th>Acciones</th>
-		</tr>
-	</thead>
-	<tbody>
-		{% for trabajo in trabajos %}
-		<tr>
-			<td>{{ trabajo.fecha_inicio|date:"d/m/Y \a \l\a\s  G:i" }}</td>
-			<td>{{ trabajo.duracion}}</td>
-			<td>{{ trabajo.cliente.nombre }}</td>
-			<td><a href="{{ trabajo.get_absolute_url }}">Detalles</a></td>
-		</tr>
-		{% endfor %}
-	</tbody>
-</table>
-{% else %}
-<p>No hay trabajos para mostrar</p>
+<center>
+	<a href="{% url 'trabajo-crear' %}"><button class="btn btn-success btn-sq-lg my-5 mx-2"><i class="far fa-clock fa-5x"></i><br/><b style="font-size: 25px">Ingresar nuevo trabajo</b></button></a>
+	{% if user.is_staff %}
+	<a href="{% url 'contador-crear' %}"><button class="btn btn-primary btn-sq-lg my-5 mx-2"><i class="fas fa-user-tie fa-5x"></i><br/><b style="font-size: 25px">Crear nuevo contador</b></button></a>
+	{% endif %}
+	<a href="{% url 'cliente-crear' %}"><button class="btn btn-danger btn-sq-lg my-5 mx-2"><i class="fas fa-address-card fa-5x"></i><br/><b style="font-size: 25px">Crear nuevo cliente</b></button></a>
+	<a href="{% url 'tipo-crear' %}"><button class="btn btn-secondary btn-sq-lg my-5 mx-2"><i class="fas fa-file-alt fa-5x"></i><br/><b style="font-size: 25px">Crear nuevo tipo de trabajo</b></button></a>
+</center>
+<div class="card bg-light mx-auto mb-4">
+	<div class="card-body">
+		<h2>Mis trabajos en las últimas 48 horas</h2>
+		<a href="trabajos/">Ver todos mis trabajos</a>
+		{% if trabajos %}
+		<table class="table table-hover table-bordered mt-4" style="background-color: #ffffff;">
+		<thead class="thead">
+				<tr>
+					<th>Fecha de inicio</th>
+					<th>Cliente</th>
+					<th>Tipo</th>
+					<th>Duración</th>	
+					<th>Acciones</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for trabajo in trabajos %}
+				<tr>
+					<td>{{ trabajo.fecha_inicio|date:"d/m/Y \a \l\a\s  G:i" }}</td>
+					<td>{{ trabajo.cliente.nombre }}</td>
+					<td>{{ trabajo.tipo }}</td>
+					<td>{{ trabajo.duracion}}</td>
+					<td><a href="{{ trabajo.get_absolute_url }}">Detalles</a></td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+		{% else %}
+		<p>No hay trabajos para mostrar</p>
+	</div>
+</div>
 {% endif %}
 {% endblock %}

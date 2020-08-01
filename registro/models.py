@@ -33,3 +33,6 @@ class Trabajo(models.Model):
 
 	def get_absolute_url(self):
 		return reverse("trabajo-detalle", kwargs={"id": self.id})
+
+
+		

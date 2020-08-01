@@ -2,13 +2,13 @@
 {% load widget_tweaks %}
 {% block content %}
 
-<h1 class="mb-4">Ingresar nuevo trabajo</h1>
 <form method="POST"> {% csrf_token %}
 	{{ form.media }}
 	<div class="form-group">
 		<input type="hidden" name="contador" value="{{ user.id }}" />
 		<div class="card bg-light mx-auto mb-4">
 			<div class="card-body">
+				<h1 class="mb-4">Ingresar nuevo trabajo</h1>
 				<table>
 					<tr>
 						<td class="pb-4"><b>Cliente:</b></td>

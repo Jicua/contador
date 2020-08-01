@@ -2,27 +2,31 @@
 
 {% block content %}
 {% if clientes %}
-<h1 class="mb-4">Lista de clientes</h1>
-<table class="table table-striped table-hover table-bordered">
-	<thead class="thead">
-		<tr>
-			<th>Rut</th>
-			<th>Nombre</th>
-			<th>Acciones</th>
-		</tr>
-	</thead>
-	<tbody>
-		{% for cliente in clientes %}
-		<tr>
-			<td>{{ cliente.rut }}</td>
-			<td>{{ cliente.nombre}}</td>
-			<td><a href="{{ cliente.get_absolute_url }}">Detalles</a></td>
-		</tr>
-		{% endfor %}
-	</tbody>
-</table>
-{% else %}
-<p>No existen clientes.</p>
-{% endif %}
-<a href="{% url 'cliente-crear' %}"><button class="btn btn-success btn-lg">Crear nuevo cliente</button></a>
+<div class="card bg-light mx-auto mb-4">
+	<div class="card-body">
+		<h1 class="mb-4">Clientes</h1>
+		<table class="table table-hover table-bordered" style="background-color: #ffffff;">
+			<thead class="thead">
+				<tr>
+					<th>Rut</th>
+					<th>Nombre</th>
+					<th>Acciones</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for cliente in clientes %}
+				<tr>
+					<td>{{ cliente.rut }}</td>
+					<td>{{ cliente.nombre}}</td>
+					<td><a href="{{ cliente.get_absolute_url }}">Detalles</a></td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+		{% else %}
+		<p>No existen clientes.</p>
+		{% endif %}
+		<a href="{% url 'cliente-crear' %}"><button class="btn btn-success btn-lg">Crear nuevo cliente</button></a>
+	</div>
+</div>
 {% endblock %}

@@ -2,28 +2,32 @@
 
 {% block content %}
 {% if trabajos %}
-<h1 class="mb-4">Lista de mis trabajos</h1>
-<table class="table table-striped table-hover table-bordered mt-4">
-<thead class="thead">
-		<tr>
-			<th>Fecha de inicio</th>
-			<th>Duración</th>	
-			<th>Cliente</th>
-			<th>Acciones</th>
-		</tr>
-	</thead>
-	<tbody>
-		{% for trabajo in trabajos %}
-		<tr>
-			<td>{{ trabajo.fecha_inicio|date:"d/m/Y \a \l\a\s  G:i" }}</td>
-			<td>{{ trabajo.duracion}}</td>
-			<td>{{ trabajo.cliente.nombre }}</td>
-			<td><a href="{{ trabajo.get_absolute_url }}">Detalles</a></td>
-		</tr>
-		{% endfor %}
-	</tbody>
-</table>
-{% else %}
-<p>No existen trabajos para mostrar.</p>
+<div class="card bg-light mx-auto mb-4">
+	<div class="card-body">
+		<h1 class="mb-4">Mis trabajos</h1>
+		<table class="table table-hover table-bordered mt-4" style="background-color: #ffffff;">
+		<thead class="thead">
+				<tr>
+					<th>Fecha de inicio</th>
+					<th>Duración</th>	
+					<th>Cliente</th>
+					<th>Acciones</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for trabajo in trabajos %}
+				<tr>
+					<td>{{ trabajo.fecha_inicio|date:"d/m/Y \a \l\a\s  G:i" }}</td>
+					<td>{{ trabajo.duracion}}</td>
+					<td>{{ trabajo.cliente.nombre }}</td>
+					<td><a href="{{ trabajo.get_absolute_url }}">Detalles</a></td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+		{% else %}
+		<p>No existen trabajos para mostrar.</p>
+	</div>
+</div>
 {% endif %}
 {% endblock %}

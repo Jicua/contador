@@ -42,7 +42,7 @@ class TrabajoForm(forms.ModelForm):
 			'fecha_inicio': DateTimePicker(
 					options={
 						'format': "DD/MM/YYYY H:mm",
-						'stepping': 5,
+						'stepping': 1,
 					},
 					attrs={
 						'append': 'fa fa-calendar',
@@ -53,7 +53,6 @@ class TrabajoForm(forms.ModelForm):
 					options={
 						'format': "H:mm",
 						'stepping': 5,
-						'useCurrent': False,
 						'defaultDate': '1970-01-01T00:00:00'
 					},
 					attrs={

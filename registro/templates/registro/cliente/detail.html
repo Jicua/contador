@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1 class="mb-4">Detalle de cliente</h1>
 <div class="card bg-light mx-auto my-4">
 	<div class="card-body">
+		<h1 class="mb-4">Detalle de cliente {{ cliente.nombre }}</h1>
 		<table>
 			<tr>
 				<td class="pb-4 pr-2"><b>Rut:</b></td>
@@ -16,5 +16,71 @@
 		</table>
 	</div>
 </div>
+<div class="card bg-light mx-auto my-4">
+	<div class="card-body">
+		<h2>Sesiones de trabajo</h2>
+		<table class="table table-hover table-bordered mt-4" style="background-color: #ffffff;">
+			<thead class="thead">
+				<tr>
+					<th>Fecha de inicio</th>
+					<th>Contador</th>
+					<th>Tipo</th>
+					<th>Duración</th>	
+					<th>Acciones</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for trabajo in trabajos %}
+				<tr>
+					<td>{{ trabajo.fecha_inicio|date:"d/m/Y \a \l\a\s  G:i" }}</td>
+					<td>{{ trabajo.contador.first_name }}</td>
+					<td>{{ trabajo.tipo }}</td>
+					<td>{{ trabajo.duracion}}</td>
+					<td><a href="{{ trabajo.get_absolute_url }}">Detalles</a></td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+</div>
+<div class="card bg-light mx-auto my-4">
+	<div class="card-body">
+		<h2>Horas dedicadas por contador:</h2>
+		<form method="GET" class="form-inline">
+			<p>
+				Seleccione contador:
+				<select class="form-control" name="contador">
+					{% for contador in contadores %}
+					<option>{{ contador.first_name }}</option>
+					{% endfor %}
+				</select>
+			<input type="submit" value="Buscar" class="btn btn-success" />
+			</p>
+		</form>
+		{% if horasContador %}
+		<p>{{ horasContador }} horas dedicadas por {{ contador }}</p>
+		{% endif %}
+	</div>
+</div>
+<div class="card bg-light mx-auto my-4">
+	<div class="card-body">
+		<h2>Horas dedicadas por tipo de trabajo:</h2>
+		<form method="GET" class="form-inline">
+			<p>
+				Seleccione tipo de trabajo:
+				<select class="form-control" name="tipo">
+					{% for tipo in tipos %}
+					<option>{{ tipo }}</option>
+					{% endfor %}
+				</select>
+			<input type="submit" value="Buscar" class="btn btn-success" />
+			</p>
+		</form>
+		{% if horasTipo %}
+		<p>{{ horasTipo }} horas dedicadas por {{ tipo }}</p>
+		{% endif %}
+	</div>
+</div>
+
 <button class="btn btn-lg btn-secondary" onclick="window.location.href='/registro/clientes/'">Volver</button>
 {% endblock %}

@@ -1,11 +1,11 @@
 {% extends 'base.html' %}
 {% load widget_tweaks %}
 {% block content %}
-<h2 class="mb-4">Ingresar nuevo tipo de trabajo</h2>
 <form method="POST"> {% csrf_token %}
 	<div class="form-group">
 		<div class="card bg-light mx-auto mb-4">
 			<div class="card-body">
+				<h1 class="mb-4">Ingresar nuevo tipo de trabajo</h1>
 				<table>
 					<tr>
 						<td class="pb-4 pr-2"><b>Nombre:</b></td>
@@ -15,6 +15,6 @@
 			</div>
 		</div>
 	</div>
-	<input type="submit" value="Crear nuevo tipo de trabajo" class="btn btn-lg btn-success mr-4"/> <button class="btn btn-lg btn-secondary" onclick="window.location.href='/registro/clientes/'">Cancelar</button>
+	<input type="submit" value="Crear nuevo tipo de trabajo" class="btn btn-lg btn-success mr-4"/> <button class="btn btn-lg btn-secondary" onclick="window.location.href='/registro/tipos/'">Cancelar</button>
 </form>
 {% endblock %}

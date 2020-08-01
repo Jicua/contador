@@ -1,29 +1,31 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #59a6cf">
   <a class="navbar-brand" href="/registro/">Contador v0.1</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    {% if user.is_authenticated %}
     <ul class="navbar-nav mr-auto ml-5">
-      <li class="nav-item active ml-2">
-        <a class="nav-link" href="/registro/">Inicio<span class="sr-only">(current)</span></a>
+      <li class="nav-item active ml-2" style="border-right: 1px solid black;">
+        <a class="nav-link" href="{% url 'inicio' %}"><i class="fas fa-home fa-lg"></i> Inicio</a>
+      </li>
+      {% if user.is_staff %}
+      <li class="nav-item active ml-2" style="border-right: 1px solid black;">
+        <a class="nav-link" href="{% url 'contador-lista' %}"><i class="fas fa-user-tie  fa-lg"></i> Contadores</a>
+      </li>
+      {% endif %}
+      <li class="nav-item active ml-2" style="border-right: 1px solid black;">
+        <a class="nav-link" href="{% url 'cliente-lista' %}"><i class="fas fa-address-card fa-lg"></i> Clientes</a>
+      </li>
+      <li class="nav-item active ml-2" style="border-right: 1px solid black;">
+        <a class="nav-link" href="{% url 'tipo-lista' %}"><i class="fas fa-file-alt fa-lg"></i> Tipos de trabajo</a>
       </li>
       <li class="nav-item active ml-2">
-        <a class="nav-link" href="{% url 'contador-lista' %}">Contadores</a>
-      </li>
-      <li class="nav-item active ml-2">
-        <a class="nav-link" href="{% url 'cliente-lista' %}">Clientes</a>
-      </li>
-      <li class="nav-item active ml-2">
-        <a class="nav-link" href="{% url 'tipo-lista' %}">Tipos de trabajo</a>
-      </li>
-      <li class="nav-item active ml-2">
-        <a class="nav-link" href="{% url 'trabajo-lista' %}">Trabajos</a>
+        <a class="nav-link" href="{% url 'trabajo-lista' %}"><i class="fas fa-tasks fa-lg"></i> Mis trabajos</a>
       </li>
     </ul>
-    {% if user.is_authenticated %}
     <h4 class="mr-4">Bienvenido {{ user.first_name }}</h4>
-    <a class="nav-link mr-5 ml-5" href="/logout">Cerrar sesión</a>
+    <a href="{% url 'logout' %}"><button class="btn btn-secondary mr-4">Cerrar sesión</button></a>
     {% endif %}
   </div>
 </nav>

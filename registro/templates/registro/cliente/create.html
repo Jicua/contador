@@ -1,11 +1,12 @@
 {% extends 'base.html' %}
+{% block title %}{{ title }}{% endblock %}
 {% load widget_tweaks %}
 {% block content %}
 <form method="POST"> {% csrf_token %}
 	<div class="form-group">
 		<div class="card bg-light mx-auto mb-4">
 			<div class="card-body">
-				<h1 class="mb-4">Ingresar nuevo cliente</h1>
+				<h1 class="mb-4">{{ title }}</h1>
 				<table>
 					<tr>
 						<td class="pb-4"><b>Rut:</b></td>
@@ -19,6 +20,6 @@
 			</div>
 		</div>
 	</div>
-	<input type="submit" value="Crear nuevo cliente" class="btn btn-lg btn-success mr-4"/> <button class="btn btn-lg btn-secondary" onclick="window.location.href='/registro/clientes/'">Cancelar</button>
+	<input type="submit" value="Guardar" class="btn btn-lg btn-success mr-4"/> <button class="btn btn-lg btn-secondary" onclick="window.location.href='/registro/clientes/'">Cancelar</button>
 </form>
 {% endblock %}

@@ -14,6 +14,9 @@ class Cliente(models.Model):
 	def get_absolute_url(self):
 		return reverse("cliente-detalle", kwargs={"id": self.id})
 
+	def get_edit_url(self):
+		return reverse("cliente-editar", kwargs={"id": self.id})
+
 class Tipo(models.Model):
 	nombre	= models.CharField(max_length=40, blank=False, null=False)
 
@@ -22,6 +25,9 @@ class Tipo(models.Model):
 		
 	def get_absolute_url(self):
 		return reverse("tipo-detalle", kwargs={"id": self.id})
+
+	def get_edit_url(self):
+		return reverse("tipo-editar", kwargs={"id": self.id})
 
 class Trabajo(models.Model):
 	contador		= models.ForeignKey(settings.AUTH_USER_MODEL, blank=False, null=True, on_delete=models.SET_NULL)
@@ -34,5 +40,6 @@ class Trabajo(models.Model):
 	def get_absolute_url(self):
 		return reverse("trabajo-detalle", kwargs={"id": self.id})
 
-
+	def get_edit_url(self):
+		return reverse("trabajo-editar", kwargs={"id": self.id})
 		

@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
-
+{% block title %}Iniciar sesión{% endblock %}
+{% load widget_tweaks %}
 {% block content %}
 {% if user.is_authenticated %}
     <meta http-equiv="REFRESH" content="0;url=/registro/">
@@ -10,19 +11,20 @@
 			<tbody>
 				<tr>
 					<td class="align-middle">
-						<h2>Iniciar sesión</h2>
+						<h1>Iniciar sesión</h1>
 						<div class="card bg-light mx-auto ">
 							<div class="card-body">
+								<div class="form-group">
 								<form method="POST" action="{% url 'login' %}">
 									{% csrf_token %}
 									<table>
 										<tr>
 											<td class="pb-4"><b>Usuario:</b></td>
-											<td class="pb-4">{{ form.username }}</td>
+											<td class="pb-4">{{ form.username|add_class:"form-control" }}</td>
 										</tr>
 										<tr>
 											<td class="pr-4 pb-4"><b>Contraseña:</b></td>
-											<td class="pb-4">{{ form.password }}</td>
+											<td class="pb-4">{{ form.password|add_class:"form-control" }}</td>
 										</tr>
 									</table>
 									{% if form.errors %}
@@ -34,6 +36,7 @@
 									<input type="hidden" name="next" value="{{ next }}">
 								</form>
 							</div>
+							</div>
 						</div>
 					</td>
 				</tr>
@@ -41,5 +44,4 @@
 		</table>
 	</div>
 </div>
-
 {% endblock %}

@@ -1,21 +1,24 @@
 {% extends 'base.html' %}
-
+{% block title %}{{ title }}{% endblock %}
 {% block content %}
+
 {% if contadores %}
 <div class="card bg-light mx-auto mb-4">
 	<div class="card-body">
-		<h1 class="mb-4">Contadores</h1>
+		<h1 class="mb-4"><i class="fas fa-user-tie  fa-lg"></i> Contadores</h1>
 		<div style="float: left;">
 			<table class="table table-bordered" style="background-color: #ffffff;">
 				<thead class="thead">
 					<tr>
 						<th>Nombre</th>
+						<th>Usuario</th>
 					</tr>
 				</thead>
 				<tbody>
 					{% for contador in contadores %}
 					<tr>
 						<td><a href="{{ contador.id }}">{{ contador.first_name}}</a></td>
+						<td>{{ contador.username }}</td>
 					</tr>
 					{% endfor %}
 				</tbody>
@@ -38,6 +41,7 @@
 				</tbody>
 			</table>
 		</div>
+		<!--
 		<div style="float: left;">
 			<table class="table table-bordered" style="background-color: #ffffff;">
 				<thead class="thead">
@@ -47,14 +51,20 @@
 				<tbody>
 					{% for contador in contadores %}
 						<tr>
-							<td><a href="{{ contador.id }}">Editar</td>
+							<td><a href="{{ contador.id }}/editar/">Editar</td>
 						</tr>
 					{% endfor %}
 				</tbody>
 			</table>
 		</div>
+		-->
 		{% else %}
-		<p>No existen contadores.</p>
+		<div class="card bg-light mx-auto mb-4">
+			<div class="card-body">
+				<p>No existen contadores.</p>
+				<a href="{% url 'contador-crear' %}"><button class="btn btn-success btn-lg">Crear nuevo contador</button></a>
+			</div>
+		</div>
 		{% endif %}
 	</div>
 </div>

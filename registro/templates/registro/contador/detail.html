@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% block title %}{{ title }}{% endblock %}
 {% block content %}
 <div class="card bg-light mx-auto my-4">
 	<div class="card-body">
@@ -25,6 +25,7 @@
 				<tr>
 					<th>Fecha de inicio</th>
 					<th>Cliente</th>
+					<th>Tipo</th>
 					<th>Duración</th>	
 					<th>Acciones</th>
 				</tr>
@@ -34,6 +35,7 @@
 				<tr>
 					<td>{{ trabajo.fecha_inicio|date:"d/m/Y \a \l\a\s  G:i" }}</td>
 					<td>{{ trabajo.cliente.nombre }}</td>
+					<td>{{ trabajo.tipo }}</td>
 					<td>{{ trabajo.duracion}}</td>
 					<td><a href="{{ trabajo.get_absolute_url }}">Detalles</a></td>
 				</tr>
@@ -80,5 +82,5 @@
 		{% endif %}
 	</div>
 </div>
-<button class="btn btn-lg btn-secondary" onclick="window.location.href='/registro/contadores/'">Volver</button>
+<button class="btn btn-lg btn-secondary mb-4" onclick="window.location.href='/registro/contadores/'">Volver</button>
 {% endblock %}

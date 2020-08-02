@@ -1,30 +1,33 @@
 {% extends 'base.html' %}
-
+{% block title %}{{ title }}{% endblock %}
 {% block content %}
 {% if tipos %}
 <div class="card bg-light mx-auto mb-4">
 	<div class="card-body">
-		<h1 class="mb-4">Tipos de trabajo</h1>
-		<table class="table table-hover table-bordered" style="background-color: #ffffff;">
-			<thead class="thead">
-				<tr>
-					<th>Tipo</th>
-					<th>Acciones</th>
-				</tr>
-			</thead>
-			<tbody>
-				{% for tipo in tipos %}
-				<tr>
-					<td>{{ tipo.nombre}}</td>
-					<td><a href="{{ tipo.get_absolute_url }}">Editar</a></td>
-				</tr>
-				{% endfor %}
-			</tbody>
-		</table>
+		<h1 class="mb-4"><i class="fas fa-file-alt fa-lg"></i> Tipos de trabajo</h1>
+		<div style="float: left;">
+			<table class="table table-hover table-bordered" style="background-color: #ffffff;">
+				<thead class="thead">
+					<tr>
+						<th>Nombre</th>
+						<th>Acciones</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for tipo in tipos %}
+					<tr>
+						<td>{{ tipo.nombre}}</td>
+						<td><a href="{{ tipo.get_edit_url }}">Editar</a></td>
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+			<a href="{% url 'tipo-crear' %}"><button class="btn btn-success btn-lg">Crear nuevo tipo de trabajo</button></a>
+		</div>
 		{% else %}
 		<p>No existen tipos de trabajo.</p>
 		{% endif %}
-		<a href="{% url 'tipo-crear' %}"><button class="btn btn-success btn-lg">Crear nuevo tipo de trabajo</button></a>
+		
 	</div>
 </div>
 {% endblock %}

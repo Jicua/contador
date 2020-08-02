@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% block title %}{{ title }}{% endblock %}
 {% load static %}
 {% block content %}
 <style>
@@ -22,6 +23,37 @@
 </center>
 <div class="card bg-light mx-auto mb-4">
 	<div class="card-body">
+		<h2>Mis trabajos de hoy</h2>
+		{% if trabajosHoy %}
+		<div style="float: left">
+		<table class="table table-hover table-bordered mt-4" style="background-color: #ffffff;">
+			<thead class="thead">
+				<tr>
+					<th>Hora</th>
+					<th>Cliente</th>
+					<th>Trabajo</th>
+					<th>Acciones</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for trabajoHoy in trabajosHoy %}
+				<tr>
+					<td>{{ trabajoHoy.fecha_inicio|date:"G:i" }}</td>
+					<td><a href="{{ trabajoHoy.cliente.get_absolute_url }}">{{ trabajoHoy.cliente }}</a></td>
+					{% if trabajoHoy.tipo.nombre == "IVA" %}<td class="table-primary">{% elif trabajoHoy.tipo.nombre == "Llamada" %}<td class="table-secondary">{% else %}<td>{% endif %}{{ trabajoHoy.tipo }}</td>
+					<td><a href="{{ trabajoHoy.get_absolute_url }}">Detalles</a> - <a href="{{ trabajoHoy.get_edit_url }}">Editar</a></td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+		</div>
+		{% else %}
+		<p>No hay trabajos para mostrar.</p>
+		{% endif %}
+	</div>
+</div>
+<div class="card bg-light mx-auto mb-4">
+	<div class="card-body">
 		<h2>Mis trabajos en las últimas 48 horas</h2>
 		<a href="trabajos/">Ver todos mis trabajos</a>
 		{% if trabajos %}
@@ -29,9 +61,9 @@
 		<thead class="thead">
 				<tr>
 					<th>Fecha de inicio</th>
+					<th>Duración</th>
 					<th>Cliente</th>
-					<th>Tipo</th>
-					<th>Duración</th>	
+					<th>Tipo</th>	
 					<th>Acciones</th>
 				</tr>
 			</thead>
@@ -39,16 +71,16 @@
 				{% for trabajo in trabajos %}
 				<tr>
 					<td>{{ trabajo.fecha_inicio|date:"d/m/Y \a \l\a\s  G:i" }}</td>
-					<td>{{ trabajo.cliente.nombre }}</td>
-					<td>{{ trabajo.tipo }}</td>
 					<td>{{ trabajo.duracion}}</td>
-					<td><a href="{{ trabajo.get_absolute_url }}">Detalles</a></td>
+					<td><a href="{{ trabajo.cliente.get_absolute_url }}">{{ trabajo.cliente }}</a></td>
+					<td>{{ trabajo.tipo }}</td>
+					<td><a href="{{ trabajo.get_absolute_url }}">Detalles</a> - <a href="{{ trabajo.get_edit_url }}">Editar</a></td>
 				</tr>
 				{% endfor %}
 			</tbody>
 		</table>
 		{% else %}
-		<p>No hay trabajos para mostrar</p>
+		<p>No hay trabajos para mostrar.</p>
 	</div>
 </div>
 {% endif %}

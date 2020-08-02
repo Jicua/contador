@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% block title %}{{ title }}{% endblock %}
 {% block content %}
 <div class="card bg-light mx-auto my-4">
 	<div class="card-body">
@@ -23,9 +23,9 @@
 			<thead class="thead">
 				<tr>
 					<th>Fecha de inicio</th>
+					<th>Duración</th>
 					<th>Contador</th>
 					<th>Tipo</th>
-					<th>Duración</th>	
 					<th>Acciones</th>
 				</tr>
 			</thead>
@@ -33,9 +33,9 @@
 				{% for trabajo in trabajos %}
 				<tr>
 					<td>{{ trabajo.fecha_inicio|date:"d/m/Y \a \l\a\s  G:i" }}</td>
+					<td>{{ trabajo.duracion}}</td>
 					<td>{{ trabajo.contador.first_name }}</td>
 					<td>{{ trabajo.tipo }}</td>
-					<td>{{ trabajo.duracion}}</td>
 					<td><a href="{{ trabajo.get_absolute_url }}">Detalles</a></td>
 				</tr>
 				{% endfor %}
@@ -82,5 +82,5 @@
 	</div>
 </div>
 
-<button class="btn btn-lg btn-secondary" onclick="window.location.href='/registro/clientes/'">Volver</button>
+<button class="btn btn-lg btn-secondary mb-4" onclick="window.location.href='/registro/clientes/'">Volver</button> <button class="btn btn-lg btn-primary mb-4" onclick="window.location.href='{{ cliente.get_edit_url }}'">Editar</button>
 {% endblock %}

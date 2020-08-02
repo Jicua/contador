@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1 class="mb-4">Detalle de trabajo</h1>
 <div class="card bg-light mx-auto my-4">
 	<div class="card-body">
+		<h1 class="mb-4">Detalle de trabajo</h1>
 		<table>
 			<tr>
 				<td class="pb-4 pr-2"><b>Contador:</b></td>
@@ -37,5 +37,5 @@
 		</table>
 	</div>
 </div>
-<button class="btn btn-lg btn-secondary" onclick="window.location.href='/registro/trabajos/'">Volver</button>
+<button class="btn btn-lg btn-secondary" onclick="window.location.href='/registro/trabajos/'">Volver</button> {% if user.is_staff %}<button class="btn btn-lg btn-primary" onclick="window.location.href='{{ trabajo.get_edit_url }}'">Editar</button>{% endif %}
 {% endblock %}

@@ -4,15 +4,13 @@
 {% if trabajos %}
 <div class="card bg-light mx-auto mb-4">
 	<div class="card-body">
-		<h1> <i class="fas fa-tasks fa-lg"></i> Mis trabajos</h1>
-		{% if user.is_staff %}
-		<a class="mb-4" href="{% url 'trabajo-todos' %}">Ver todos los trabajos</a>
-		{% endif %}
+		<h1 class="mb-4"><i class="fas fa-tasks fa-lg"></i> Trabajos</h1><a href="{% url 'trabajo-exportar' %}"><button class="btn btn-lg btn-success">Exportar a Excel</button></a>
 		<table class="table table-hover table-bordered mt-4" style="background-color: #ffffff;">
 		<thead class="thead">
 				<tr>
 					<th>Fecha de inicio</th>
-					<th>Duración</th>	
+					<th>Duración</th>
+					<th>Contador</th>
 					<th>Cliente</th>
 					<th>Tipo</th>
 					<th>Acciones</th>
@@ -23,9 +21,10 @@
 				<tr>
 					<td>{{ trabajo.fecha_inicio|date:"d/m/Y \a \l\a\s  G:i" }}</td>
 					<td>{{ trabajo.duracion}}</td>
-					<td><a href="{{ trabajo.cliente.get_absolute_url }}">{{ trabajo.cliente.nombre }}</a></td>
+					<td><a href="/registro/contadores/{{ trabajo.contador.id }}">{{ trabajo.contador.first_name }}</a></td>
+					<td><a href="{{ trabajo.cliente.get_absolute_url }}">{{ trabajo.cliente }}</a></td>
 					<td>{{ trabajo.tipo }}</td>
-					<td><a href="{{ trabajo.get_absolute_url }}">Detalles</a></td>
+					<td><a href="{{ trabajo.get_absolute_url }}">Detalles</a> - <a href="{{ trabajo.get_edit_url }}">Editar</a></td>
 				</tr>
 				{% endfor %}
 			</tbody>
